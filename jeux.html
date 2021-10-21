@@ -1,0 +1,250 @@
+<html>
+<meta charset="utf-8" />
+
+<head>
+    <title>My Konoha Invaders</title>
+    <script type="text/javascript" src="jeux.js"></script>
+    <style>
+        html,
+        body {
+            margin: 0px;
+            padding: 0px;
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            background: url('konoha-fond.png');
+            background-size: cover;
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+
+
+
+
+
+    <script type="text/javascript">
+
+        var ennemy1 = new Sprite("gaaraR.png", 100, 50);
+        var ennemy2 = new Sprite("orochimaruR.png", 400, 50);
+        var ennemy3 = new Sprite("sakuraR.png", 700, 90);
+        var ennemy4 = new Sprite("sasukeR.png", 1000, 40);
+        var ennemy5 = new Sprite("ssj4R.png", 300, 200);
+
+        var ennemy6 = new Sprite("gaaraR.png", 300, 150);
+        var ennemy7 = new Sprite("orochimaruR.png", 600, 150);
+        var ennemy8 = new Sprite("sakuraR.png", 900, 190);
+        var ennemy9 = new Sprite("sasukeR.png", 1200, 140);
+        var ennemy10 = new Sprite("ssj4R.png", 500, 200);
+
+        var weapon1 = new Sprite("kunaiR.png", 0, 0);
+        weapon1.display = "none";
+
+        var weapon2 = new Sprite("rasenganR.png", 30, 70);
+        weapon2.display = "none";
+        var weapon3 = new Sprite("kunaiR.png", 0, 0);
+        weapon3.display = "none";
+
+
+        var naruto = new Sprite("narutoR.png", 740, 700);
+
+
+
+        document.onkeydown = function (event) {// touche 7 vers diagonale gauche haut
+            console.log(event.keyCode);
+            if (event.keyCode == 103) {
+                naruto.left -= 10;
+                naruto.top -= 10;
+            } else if (event.keyCode == 104 || event.keyCode == 38) { // touche vers top
+                naruto.left += 0;
+                naruto.top -= 10;
+            } else if (event.keyCode == 105) { // touche vers diagonale droite haut
+                naruto.left += 10;
+                naruto.top -= 10;
+            } else if (event.keyCode == 100 || event.keyCode == 37) { // touche vers  gauche
+                naruto.left -= 10;
+                naruto.top += 0;
+            } else if (event.keyCode == 102 || event.keyCode == 39) { // touche vers  droite
+                naruto.left += 10;
+                naruto.top += 0;
+            } else if (event.keyCode == 99) { // touche vers diagonale droite bas
+                naruto.left += 10;
+                naruto.top += 10;
+            } else if (event.keyCode == 98 || event.keyCode == 40) { // touche  bas
+                naruto.left -= 0;
+                naruto.top += 10;
+            } else if (event.keyCode == 97) { // touche vers diagonale gauche bas
+                naruto.left -= 10;
+                naruto.top += 10;
+            } else if (event.keyCode == 90) { // touche vers top
+                naruto.left += 0;
+                naruto.top -= 15;
+            } else if (event.keyCode == 65) { // touche vers diagonale gauche haut
+                naruto.left -= 15;
+                naruto.top -= 15;
+            } else if (event.keyCode == 81) { // touche vers  gauche
+                naruto.left -= 15;
+                naruto.top += 0;
+            } else if (event.keyCode == 68) { // touche vers  droite
+                naruto.left += 15;
+                naruto.top += 0;
+            } else if (event.keyCode == 67) { // touche vers diagonale droite bas
+                naruto.left += 15;
+                naruto.top += 15;
+            } else if (event.keyCode == 83) { // touche  bas
+                naruto.left -= 0;
+                naruto.top += 15;
+            } else if (event.keyCode == 87) { // touche vers diagonale gauche bas
+                naruto.left -= 15;
+                naruto.top += 15;
+            } else if (event.keyCode == 69) { // touche vers diagonale droite haut
+                naruto.left += 15;
+                naruto.top -= 15;}
+
+
+                if (naruto.checkCollision(ennemy)) {
+                 alert("game over") ;
+                 console.log("game over");
+ 
+                } 
+
+
+            if (naruto.left < 0) {
+                naruto.left = 0;
+            }
+            if (naruto.left >= document.body.clientWidth - naruto._node.width) {
+                naruto.left = document.body.clientWidth - naruto._node.width
+            }
+            if (naruto.top < 0) {
+                naruto.top = 0;
+            }
+            if (naruto.top > document.body.clientHeight - naruto._node.height) {
+                naruto.top = document.body.clientHeight - naruto._node.height
+            }
+            if (event.keyCode == 101 || event.keyCode == 32) {
+
+                weapon1.display = "block";
+                weapon2.display = "block";
+                weapon3.display = "block";
+                weapon1.left = naruto.left;
+                weapon2.left = naruto.left + naruto._node.width;
+                weapon3.left = naruto.left + naruto._node.width * 1.5;
+
+                weapon1.top = naruto.top - naruto._node.height;
+                weapon2.top = naruto.top;
+                weapon3.top = naruto.top + naruto._node.width;
+
+                weapon1.startAnimation(moveWeapons, 10);
+                weapon2.startAnimation(moveWeapons, 20);
+                weapon3.startAnimation(moveWeapons, 15);
+
+
+            }
+
+        };
+
+        function moveWeapons(weapon) {
+
+            weapon1.top -= 10;
+            weapon2.top -= 20;
+            weapon3.top -= 30;
+            if (weapon == weapon2) { console.log("hi" + weapon._node.src) } else {
+                console.log("hola n 2" + weapon._node.src)
+            };
+            if (weapon.top < - 40) {
+                weapon.stopAnimation();
+                // weapon2.stopAnimation();
+                weapon.display = "none";
+                // weapon2.display = "none";
+            }
+            for (var i = 1; i <= 10; i++) {
+                var ennemy = window["ennemy" + i];
+                if (ennemy.display =="none") continue;
+                if ( weapon.checkCollision(ennemy)) {
+                    weapon.stopAnimation();
+                    weapon.display = "none";
+                    ennemy.stopAnimation();
+                    ennemy.display = "none";
+
+                }
+                 
+            }
+           
+        }
+
+
+
+        function moveEnnemyToLeft(ennemy) {
+            ennemy.left -= 3;
+
+            if (ennemy.left <= 0) {
+                ennemy.top += 50;
+                ennemy.startAnimation(moveEnnemyToRight, 10);
+            }
+            if (ennemy.top > 50) {
+                ennemy.top += 50;
+                ennemy.startAnimation(moveEnnemyToLeftFast, 10);
+            }
+        }
+
+
+        function moveEnnemyToLeftFast(ennemy) {
+            ennemy.left -= 20;
+
+            if (ennemy.left <= 0) {
+                ennemy.top += 50;
+                ennemy.startAnimation(moveEnnemyToRightFast, 10);
+            }
+            if (ennemy.top > document.body.clientHeight) {
+                ennemy.stopAnimation();
+            }
+
+
+        }
+
+
+        function moveEnnemyToRight(ennemy) {
+            ennemy.left += 3;
+
+            if (ennemy.left > document.body.clientWidth - ennemy._node.width) {
+                ennemy.top += 50;
+                ennemy.startAnimation(moveEnnemyToLeft, 10);
+            }
+
+        }
+        function moveEnnemyToRightFast(ennemy) {
+            ennemy.left += 20;
+            if (ennemy.left > document.body.clientWidth - ennemy._node.width) {
+                ennemy.startAnimation(moveEnnemyToLeftFast, 10);
+            }
+
+
+        }
+
+        /*  gaara.startAnimation(moveEnnemyToRight, 10);
+          orochimaru.startAnimation(moveEnnemyToRight, 10);
+          sakura.startAnimation(moveEnnemyToRight, 10);
+          sasuke.startAnimation(moveEnnemyToRight, 10);
+          ssj4.startAnimation(moveEnnemyToRightFast, 5);
+  
+          gaara1.startAnimation1(moveEnnemyToRight, 10);
+          orochimaru1.startAnimation1(moveEnnemyToRight, 10);
+          sakura1.startAnimation1(moveEnnemyToRight, 10);
+          sasuke1.startAnimation1(moveEnnemyToRight, 10);
+          ssj41.startAnimation1(moveEnnemyToRightFast, 5);
+    */
+        for (var i = 1; i <= 10; i++) {
+            window["ennemy" + i].startAnimation(moveEnnemyToRight, 10);
+        }
+        for (var i = 0; i <= 3; i++) {
+            weapon = window["weapon" + i].startAnimation(moveWeapons, 10);
+        }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,62 @@
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <title>My Konoha Invaders</title>
+        <script type="text/javascript" src="My%20Konoha%20Invaders_fichiers/jeux.js"></script>
+        <style> html,body{margin: 0px;padding:0px ;width: 100%;height: 100%;} 
+        body {background: url('konoha-fond.png') ; background-size: cover; overflow: hidden;}</style>
+    <script src="My%20Konoha%20Invaders_fichiers/prompt.js"></script></head>
+    <body>
+
+
+
+       
+
+         <script type="text/javascript">
+      
+        var gaara = new Sprite ("gaaraR.png", 100, 50);
+        var orochimaru = new Sprite ("orochimaruR.png", 400, 50); 
+        var sakura = new Sprite ("sakuraR.png", 700, 90);
+        var sasuke = new Sprite ("sasukeR.png", 1000, 40);
+        var ssj4 = new Sprite ("ssj4R.png", 1300, 200);
+
+        var kunai = new Sprite ("kunaiR.png", 0, 0);
+        kunai.display= "none";
+
+        var naruto = new Sprite ("narutoR.png", 740, 700);
+
+
+
+        document.onkeydown=function(event){// touche 7 vers diagonale gauche haut
+            console.log(event.keyCode);
+           if(event.keyCode==103){
+               naruto.left -= 10;
+               naruto.top-= 10;
+           }else if(event.keyCode==104 || event.keyCode==38  ){ // touche vers top
+               naruto.left += 0;
+               naruto.top -= 10;
+           }else if(event.keyCode==105){ // touche vers diagonale droite haut
+               naruto.left += 10;
+               naruto.top -= 10;
+           }else if(event.keyCode==100  || event.keyCode==37 ){ // touche vers  gauche
+               naruto.left -= 10;
+               naruto.top += 0;
+           }else if(event.keyCode==102 || event.keyCode==39 ){ // touche vers  droite
+               naruto.left += 10;
+               naruto.top += 0;
+           }else if(event.keyCode==99){ // touche vers diagonale droite bas
+               naruto.left += 10;
+               naruto.top +=10;
+           }else if(event.keyCode==98 || event.keyCode==40 ){ // touche  bas
+               naruto.left -= 0;
+               naruto.top +=10;
+           } else if(event.keyCode==97){ // touche vers diagonale gauche bas
+               naruto.left -= 10;
+               naruto.top += 10;
+            }
+        } 
+
+           
+
+        </script><img src="My%20Konoha%20Invaders_fichiers/gaaraR.png" style="position: absolute; left: 100px; top: 50px;"><img src="My%20Konoha%20Invaders_fichiers/orochimaruR.png" style="position: absolute; left: 400px; top: 50px;"><img src="My%20Konoha%20Invaders_fichiers/sakuraR.png" style="position: absolute; left: 700px; top: 90px;"><img src="My%20Konoha%20Invaders_fichiers/sasukeR.png" style="position: absolute; left: 1000px; top: 40px;"><img src="My%20Konoha%20Invaders_fichiers/ssj4R.png" style="position: absolute; left: 1300px; top: 200px;"><img src="My%20Konoha%20Invaders_fichiers/kunaiR.png" style="position: absolute; left: 0px; top: 0px; display: none;"><img src="My%20Konoha%20Invaders_fichiers/narutoR.png" style="position: absolute; left: 170px; top: 230px;">
+    
+</body></html>
